@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private bool inRange;
     private bool grabbed;
+    private bool inRange;
+    private List<GameObject> boxes;
 
     //collider
     //compare tag crate (with an object list)
@@ -20,13 +22,41 @@ public class PickUp : MonoBehaviour
         {
             //add list thingy here
             inRange = true;
+            addObject();
+            if(inRange)
+            if (Input.GetKey(KeyCode.E))
+            {
+                grabbed = true;
+            }
         }
     }
+    
 
 
     public void Grab()
     {
+        if (grabbed)
+        {
+            //make the box a part of the player through parent child relations of objects
+        }
+    }
 
+    public void addObject()
+    {
+        if (inRange)
+        {
+            boxes = new List<GameObject>();
+            boxes.Add(gameObject);
+
+        }
+
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Crate"))
+        {
+            boxes.Remove(gameObject);
+        }
     }
 
 
