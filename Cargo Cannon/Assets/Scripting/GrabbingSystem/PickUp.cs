@@ -51,9 +51,9 @@ public class PickUp : MonoBehaviour
         }
 
     }
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider collider)
     {
-        if (other.CompareTag("Crate"))
+        if (collider.CompareTag("Crate"))
         {
             boxes.Remove(gameObject);
         }
