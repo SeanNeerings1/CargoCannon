@@ -18,11 +18,9 @@ public class PickUp : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Crate"))
+        if (collider.CompareTag("Player"))
         {
-            //add list thingy here
             inRange = true;
-            addObject();
             if(inRange)
             if (Input.GetKey(KeyCode.E))
             {
@@ -38,24 +36,17 @@ public class PickUp : MonoBehaviour
         if (grabbed)
         {
             //make the box a part of the player through parent child relations of objects
-        }
+        } //might have to make a status class for the player and return a true value otherwise you'd be able to grab multiple boxes at once
     }
 
-    public void addObject()
-    {
-        if (inRange)
-        {
-            boxes = new List<GameObject>();
-            boxes.Add(gameObject);
+    
 
-        }
-
-    }
+    
     public void OnTriggerExit(Collider collider)
     {
-        if (collider.CompareTag("Crate"))
+        if (collider.CompareTag("Player"))
         {
-            boxes.Remove(gameObject);
+            inRange = false;
         }
     }
 
