@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.Progress;
 
 public class PickUp : MonoBehaviour
@@ -26,6 +27,7 @@ public class PickUp : MonoBehaviour
 
 
     //turn into raycast
+    /*
     public void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Box"))
@@ -47,16 +49,29 @@ public class PickUp : MonoBehaviour
 
     */
 
+    private void Update()
+    {
+        Grab();
+    }
+
     public void Grab()
     {
-       if(Physics.Raycast(transform.position, Vector3.forward, _distance) && !holding)
+
+        Debug.DrawRay(transform.position, transform.forward * _distance, Color.green);
+        //visualisation of the raycast
+        RaycastHit hit;
+       if(Physics.Raycast(transform.position, transform.forward, out hit, _distance) && Input.GetKey(KeyCode.E) && !holding)
         {
             //_player.transform.parent = _box.transform; //double check this
 
-            //_player.transform.parent = RaycastHit.gameObject; //double check this
+            print(hit.collider.gameObject.name);
+            if(hit.collider.gameObject.tag == "PickUp")
+            {
+                hit.transform.parent = _player.transform;
+                holding = true;
 
+            }
 
-            holding = true;
         }
         
         
@@ -69,8 +84,11 @@ public class PickUp : MonoBehaviour
       //function
       holding = false;
     }
-    
 
+
+
+    
+    /*
    //turn into raycast
     public void OnTriggerExit(Collider collider)
     {
@@ -79,6 +97,6 @@ public class PickUp : MonoBehaviour
             inRange = false;
         }
     }
-
+    */
 
 }
