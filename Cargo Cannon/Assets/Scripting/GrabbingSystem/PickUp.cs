@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.Progress;
 
 public class PickUp : MonoBehaviour
@@ -13,7 +14,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float _distance;
 
     [SerializeField] private GameObject _player;
-    [SerializeField] private GameObject _box;
+    //[SerializeField] private GameObject _box;
 
     //possibly use a raycast system with this
 
@@ -26,6 +27,7 @@ public class PickUp : MonoBehaviour
 
 
     //turn into raycast
+    /*
     public void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Box"))
@@ -38,15 +40,38 @@ public class PickUp : MonoBehaviour
             }
         }
     }
-    
 
+    /*
+
+     RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+
+    */
+
+    private void Update()
+    {
+        Grab();
+    }
 
     public void Grab()
     {
-       if(Physics.Raycast(transform.position, Vector3.forward, _distance) && !holding)
+
+        Debug.DrawRay(transform.position, transform.forward * _distance, Color.green);
+        //visualisation of the raycast
+        RaycastHit hit;
+       if(Physics.Raycast(transform.position, transform.forward, out hit, _distance) && Input.GetKey(KeyCode.E) && !holding)
         {
-            _player.transform.parent = _box.transform; //double check this
-            holding = true;
+            //_player.transform.parent = _box.transform; //double check this
+
+            print(hit.collider.gameObject.name);
+            if(hit.collider.gameObject.tag == "PickUp")
+            {
+                hit.transform.parent = _player.transform;
+                holding = true;
+
+            }
+
         }
         
         
@@ -59,8 +84,11 @@ public class PickUp : MonoBehaviour
       //function
       holding = false;
     }
-    
 
+
+
+    
+    /*
    //turn into raycast
     public void OnTriggerExit(Collider collider)
     {
@@ -69,6 +97,6 @@ public class PickUp : MonoBehaviour
             inRange = false;
         }
     }
-
+    */
 
 }
