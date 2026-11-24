@@ -68,8 +68,15 @@ public class PickUp : MonoBehaviour
             if(hit.collider.gameObject.tag == "PickUp")
             {
                 hit.transform.parent = _player.transform;
+                Rigidbody rb =  hit.collider.gameObject.GetComponent<Rigidbody>();
+                rb.useGravity = false;
                 holding = true;
 
+            }
+            if (Input.GetKey(KeyCode.Q)) //drop doesn't work due to if statement conditions so make it apart from it
+            {
+                hit.transform.parent = null;
+                holding = false;
             }
 
         }
@@ -79,13 +86,12 @@ public class PickUp : MonoBehaviour
             
          //might have to make a status class for the player and return a true value otherwise you'd be able to grab multiple boxes at once
     }
+    
+
     public void drop()
     {
-      //function
-      holding = false;
+
     }
-
-
 
     
     /*
