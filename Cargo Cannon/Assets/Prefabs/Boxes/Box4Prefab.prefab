@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0be995de4eeaff34db441f633e0803d4, type: 3}
       propertyPath: m_Name
-      value: Box4
+      value: Box4Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0be995de4eeaff34db441f633e0803d4, type: 3}
+      propertyPath: m_TagString
+      value: PickUp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
