@@ -1,10 +1,21 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class PickUp : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
+    private bool grabbed;
+    private bool holding;
+    private bool inRange;
 
+    [SerializeField] private float _distance;
+
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _box;
+
+    //possibly use a raycast system with this
 
     //collider
     //compare tag crate (with an object list)
@@ -14,8 +25,50 @@ public class PickUp : MonoBehaviour
     //a boolean for grabbing and player input that trigger said boolean
 
 
+    //turn into raycast
+    public void OnTriggerEnter(Collider collider)
+    {
+        if (collider.CompareTag("Box"))
+        {
+            inRange = true;
+            if (Input.GetKey(KeyCode.E) && !holding && inRange)
+            {
+                grabbed = true;
+                    //Transform() within the () place a SetParent or tranform.SetParent()
+            }
+        }
+    }
+    
 
 
+    public void Grab()
+    {
+       if(Physics.Raycast(transform.position, Vector3.forward, _distance) && !holding)
+        {
+            _player.transform.parent = _box.transform; //double check this
+            holding = true;
+        }
+        
+        
+            //  Transform.SetParent();
+            
+         //might have to make a status class for the player and return a true value otherwise you'd be able to grab multiple boxes at once
+    }
+    public void drop()
+    {
+      //function
+      holding = false;
+    }
+    
+
+   //turn into raycast
+    public void OnTriggerExit(Collider collider)
+    {
+        if (collider.CompareTag("Box"))
+        {
+            inRange = false;
+        }
+    }
 
 
 }
