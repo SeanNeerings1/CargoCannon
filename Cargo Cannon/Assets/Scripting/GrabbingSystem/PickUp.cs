@@ -13,7 +13,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float _distance;
 
     [SerializeField] private GameObject _player;
-    [SerializeField] private GameObject _box;
+    //[SerializeField] private GameObject _box;
 
     //possibly use a raycast system with this
 
@@ -38,14 +38,24 @@ public class PickUp : MonoBehaviour
             }
         }
     }
-    
 
+    /*
+
+     RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+
+    */
 
     public void Grab()
     {
        if(Physics.Raycast(transform.position, Vector3.forward, _distance) && !holding)
         {
-            _player.transform.parent = _box.transform; //double check this
+            //_player.transform.parent = _box.transform; //double check this
+
+            //_player.transform.parent = RaycastHit.gameObject; //double check this
+
+
             holding = true;
         }
         
