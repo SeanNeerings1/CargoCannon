@@ -293,6 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1137724050}
+  - component: {fileID: 1137724051}
   m_Layer: 0
   m_Name: BoxSpawnLocation
   m_TagString: Untagged
@@ -315,6 +316,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1137724051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137724049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad33576c67b8a2c40a54272b652e0181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxPrefab: {fileID: 7940670499699388094, guid: a695c93a4d275fa4c87b204ee49221bd, type: 3}
+  spawnPoint: {fileID: 1137724050}
 --- !u!1 &1649450305
 GameObject:
   m_ObjectHideFlags: 0
