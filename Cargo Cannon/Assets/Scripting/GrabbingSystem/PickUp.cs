@@ -13,45 +13,20 @@ public class PickUp : MonoBehaviour
 
     [SerializeField] private float _distance;
 
-    [SerializeField] private GameObject _player;
-    //[SerializeField] private GameObject _box;
-
-    //possibly use a raycast system with this
-
-    //collider
-    //compare tag crate (with an object list)
-    //collision.getcomponent and check the crateID
-    //also get the rigidbody of said crates
-    //physics based force that pushes the crate up 
-    //a boolean for grabbing and player input that trigger said boolean
-
-
-    //turn into raycast
-    /*
-    public void OnTriggerEnter(Collider collider)
-    {
-        if (collider.CompareTag("Box"))
-        {
-            inRange = true;
-            if (Input.GetKey(KeyCode.E) && !holding && inRange)
-            {
-                grabbed = true;
-                    //Transform() within the () place a SetParent or tranform.SetParent()
-            }
-        }
-    }
-
-    /*
-
-     RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
-
-    */
+    
+    [SerializeField] private GameObject _boxPosition;
+    private GameObject _holdingBox;
+    
+    
+    //Currently need an empty that's always stuck on the end of the raycast, then parent the box to said empty
 
     private void Update()
     {
         Grab();
+        if (Input.GetKey(KeyCode.Q)) //drop doesn't work due to if statement conditions so make it apart from it
+        {
+            drop();
+        }
     }
 
     public void Grab()
@@ -67,17 +42,16 @@ public class PickUp : MonoBehaviour
             print(hit.collider.gameObject.name);
             if(hit.collider.gameObject.tag == "PickUp")
             {
-                hit.transform.parent = _player.transform;
+                hit.transform.parent = _boxPosition.transform;
                 Rigidbody rb =  hit.collider.gameObject.GetComponent<Rigidbody>();
-                rb.useGravity = false;
+                rb.isKinematic = true;
+                //rb.useGravity = false;
                 holding = true;
 
+                _holdingBox = hit.collider.gameObject;
+                
             }
-            if (Input.GetKey(KeyCode.Q)) //drop doesn't work due to if statement conditions so make it apart from it
-            {
-                hit.transform.parent = null;
-                holding = false;
-            }
+            
 
         }
         
@@ -91,6 +65,12 @@ public class PickUp : MonoBehaviour
     public void drop()
     {
 
+        Rigidbody rb = _holdingBox.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+
+        _holdingBox.transform.parent = null;
+        holding = false;
+        
     }
 
     
