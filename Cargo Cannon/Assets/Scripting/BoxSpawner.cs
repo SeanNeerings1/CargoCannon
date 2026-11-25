@@ -3,27 +3,40 @@ using UnityEngine;
 public class BoxSpawner : MonoBehaviour
 {
     [Header("Spawner Settings")]
-    public GameObject boxPrefab;
-    public Transform spawnPoint;
+    [SerializeField] private GameObject boxPrefab;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float cooldownTime = 2f;
+    [SerializeField] private float currentTimer = 0f;
 
-    public void SpawnBox()
+    private void Update()
     {
-        if (boxPrefab != null && spawnPoint != null)
+        if (currentTimer != 0f)
         {
-            Instantiate(boxPrefab, spawnPoint.position, spawnPoint.rotation);
+            if (currentTimer < 0f)
+            {
+                currentTimer = 0f;
+            }
+            else
+            {
+                currentTimer -= Time.deltaTime;
+            }
         }
-        else
-        {
-            Debug.LogWarning("Box Prefab or Spawn Point is missing in the Inspector!");
-        }
-    }
 
-    
-    void Update()
-    {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             SpawnBox();
+        }
+    }
+
+    public void SpawnBox()
+    {
+        if (currentTimer <= 0f)
+        {
+            if (boxPrefab != null && spawnPoint != null)
+            {
+                Instantiate(boxPrefab, spawnPoint.position, spawnPoint.rotation);
+                currentTimer = cooldownTime;
+            }
         }
     }
 }

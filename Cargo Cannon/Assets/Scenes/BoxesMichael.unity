@@ -330,6 +330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxPrefab: {fileID: 7940670499699388094, guid: a695c93a4d275fa4c87b204ee49221bd, type: 3}
   spawnPoint: {fileID: 1137724050}
+  cooldownTime: 1.5
+  nextSpawnTime: 0
 --- !u!1 &1649450305
 GameObject:
   m_ObjectHideFlags: 0
