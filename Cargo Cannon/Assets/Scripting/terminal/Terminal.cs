@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractableUI : MonoBehaviour
+public class Terminal : MonoBehaviour
 {
     [SerializeField] private GameObject uiPanel;          
     [SerializeField] private GameObject promptUI;         
@@ -8,6 +8,7 @@ public class InteractableUI : MonoBehaviour
     [SerializeField] private bool closeWithSameKey = true;
 
     private bool playerInRange;
+    private bool isOpen;
 
     private void Start()
     {
@@ -17,7 +18,17 @@ public class InteractableUI : MonoBehaviour
 
     private void Update()
     {
+        if (isOpen && !uiPanel.activeSelf) CloseUI();
+
+
+        if (uiPanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseUI();
+            return;
+        }
+
         if (!playerInRange || !Input.GetKeyDown(interactKey)) return;
+
 
         if (uiPanel.activeSelf)
         {
@@ -31,20 +42,31 @@ public class InteractableUI : MonoBehaviour
 
     public void OpenUI()
     {
+        isOpen = true;
+
         uiPanel.SetActive(true);
         if (promptUI != null) promptUI.SetActive(false);
+
+        MouseLook.uiOpen = true;                 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void CloseUI()
     {
+        isOpen = false;
         uiPanel.SetActive(false);
         if (promptUI != null && playerInRange) promptUI.SetActive(true);
+
+        MouseLook.uiOpen = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void SetInRange(bool inRange)
     {
         playerInRange = inRange;
         if (promptUI != null) promptUI.SetActive(inRange && !uiPanel.activeSelf);
-        if (!inRange) uiPanel.SetActive(false);
+        if (!inRange && uiPanel.activeSelf) CloseUI();
     }
 }

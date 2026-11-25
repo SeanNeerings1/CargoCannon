@@ -4,9 +4,10 @@ public class MouseLook : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
     public Transform playerBody;
+    public static bool uiOpen;
 
     [SerializeField] private float interactRange = 3f;
-    private InteractableUI current;
+    private Terminal current;
 
     private float xRotation = 0f;
 
@@ -17,6 +18,10 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+        CheckInteractable();
+
+        if (uiOpen) return;
+
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -27,17 +32,16 @@ public class MouseLook : MonoBehaviour
 
         playerBody.Rotate(Vector3.up * mouseX);
 
-        CheckInteractable(); 
     }
 
     void CheckInteractable()
     {
-        InteractableUI target = null;
+        Terminal target = null;
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, interactRange))
         {
-            target = hit.collider.GetComponentInParent<InteractableUI>();
+            target = hit.collider.GetComponentInParent<Terminal>();
         }
 
         if (target != current)
