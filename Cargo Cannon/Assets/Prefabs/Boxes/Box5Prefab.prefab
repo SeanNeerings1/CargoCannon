@@ -22,19 +22,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd1e9453883356a46b1c083358111468, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.69720113
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd1e9453883356a46b1c083358111468, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6972012
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd1e9453883356a46b1c083358111468, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.11794327
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd1e9453883356a46b1c083358111468, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.11794328
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd1e9453883356a46b1c083358111468, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -65,7 +65,7 @@ PrefabInstance:
       addedObject: {fileID: 2110549877284855411}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bd1e9453883356a46b1c083358111468, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6512909218613792263}
+      addedObject: {fileID: 3828227698252189653}
   m_SourcePrefab: {fileID: 100100000, guid: bd1e9453883356a46b1c083358111468, type: 3}
 --- !u!1 &3278500543833323869 stripped
 GameObject:
@@ -99,7 +99,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6512909218613792263
+--- !u!65 &3828227698252189653
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,5 +118,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.09768829, y: 0.14702828, z: 2.3175745}
-  m_Center: {x: -0.0027764444, y: 0.036248405, z: -0.31444347}
+  m_Size: {x: 0.09768829, y: 0.14702821, z: 2.3175735}
+  m_Center: {x: -0.0027764458, y: 0.03624839, z: -0.31444335}
