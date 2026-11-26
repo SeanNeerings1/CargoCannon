@@ -51,7 +51,7 @@ public class PickUp : MonoBehaviour
                 _holdingBoxInfo = hit.collider.gameObject.GetComponent<BoxInfo>();
                 _holdingBoxObject = hit.collider.gameObject;
 
-                //testing Natan
+                //testing if the boxPrefab and boxObject are the same, if not then something is wrong
                 if(_holdingBoxInfo.BoxPrefab != _holdingBoxObject)
                 {
                     Debug.LogError("BoxPrefab and BoxObject are NOT the same!!!!");
@@ -69,7 +69,7 @@ public class PickUp : MonoBehaviour
     }
     
 
-    public void drop()
+    public void drop(bool destroy = false)
     {
 
         Rigidbody rb = _holdingBoxObject.GetComponent<Rigidbody>();
@@ -78,8 +78,35 @@ public class PickUp : MonoBehaviour
         _holdingBoxObject.transform.parent = null;
         _holdingBoxInfo = null;
         holding = false;
+        if(destroy)
+        {
+            Destroy(_holdingBoxObject);
+        }
     }
 
+    public void StoreBox(Shelves shelf)
+    {
+        if (holding && _holdingBoxInfo != null)
+        {
+            bool placed = shelf.AddProduct(_holdingBoxInfo);
+            if (placed)
+            {
+                drop(true); // Drop and destroy the box after placing it on the shelf
+            }
+            else
+            {
+                Debug.Log("Could not place box on shelf.");
+            }
+        }
+        else if (holding && _holdingBoxInfo == null)
+        {
+            Debug.Log("Holding a box but no BoxInfo found.");
+        }
+        else
+        {
+            Debug.Log("No box to store or not holding a box.");
+        }
+    }
     
     /*
    //turn into raycast
