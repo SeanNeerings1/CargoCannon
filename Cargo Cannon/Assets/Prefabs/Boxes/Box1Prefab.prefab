@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8444831833298751339}
   - component: {fileID: 1898396045214015232}
   - component: {fileID: 4009193743077556077}
+  - component: {fileID: 1717664734410343299}
   m_Layer: 0
   m_Name: Box1Prefab
   m_TagString: PickUp
@@ -141,3 +142,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1717664734410343299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7940670499699388094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44a4667b192db52d98133fb8eeccee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Product 1
+  BoxPrefab: {fileID: 7940670499699388094}
+  Value: 0
+  StorageTags: []
+  SpoilTimer: 0

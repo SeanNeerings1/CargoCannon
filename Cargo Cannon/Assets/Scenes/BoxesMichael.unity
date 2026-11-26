@@ -310,7 +310,7 @@ Transform:
   m_GameObject: {fileID: 1137724049}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6711485, y: -0.453, z: -0.5768299}
+  m_LocalPosition: {x: 1, y: 1.5, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,10 +328,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad33576c67b8a2c40a54272b652e0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxPrefab: {fileID: 7940670499699388094, guid: a695c93a4d275fa4c87b204ee49221bd, type: 3}
+  boxPrefab1: {fileID: 7940670499699388094, guid: a695c93a4d275fa4c87b204ee49221bd, type: 3}
+  boxPrefab2: {fileID: 830650264048991908, guid: b6395f3489f9410479d0c9640b7c7356, type: 3}
+  boxPrefab3: {fileID: 6792024815062045438, guid: 5867f5c570ace3a4ba3fc14b0ecfae1e, type: 3}
+  boxPrefab4: {fileID: 6586778014658890877, guid: cc46d9fd970d2844d88ddf364d82aa73, type: 3}
+  boxPrefab5: {fileID: 3278500543833323869, guid: dd331d9cd8372fb49a36a6c2631ccb03, type: 3}
+  boxPrefab6: {fileID: 8348426874105261046, guid: 44cc554e34551484d8a511bb2f272af4, type: 3}
   spawnPoint: {fileID: 1137724050}
   cooldownTime: 1.5
-  nextSpawnTime: 0
+  currentTimer: 0
 --- !u!1 &1649450305
 GameObject:
   m_ObjectHideFlags: 0
